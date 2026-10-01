@@ -1,0 +1,15 @@
+{
+  "name": "mandatory_i",
+  "version": "0.1.0",
+  "description": "Digital documentation of everything we have gone through so far in Node (Mandatory 1)",
+  "license": "MIT",
+  "author": "Anoep",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
