@@ -1,7 +1,7 @@
 {
   "name": "mandatory_i",
   "version": "0.1.0",
-  "description": "Digital documentation of everything we have gone through so far in Node (Mandatory 1)",
+  "description": "Digital documentation of everything we have gone through in Node so far (Mandatory 1)",
   "license": "MIT",
   "author": "Anoep",
   "type": "module",
