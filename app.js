@@ -2,40 +2,39 @@ import express from 'express';
 
 const app = express();
 
-const port = 8080;
+app.use(express.static('public'));
 
-const dirName = import.meta.dirname; //__dirname in ES6 modules
+const port = process.env.PORT ?? 8080; // node har miljø variabler sat i processen. Hvis undefined, brug 8080.
 
-//Serve index
-app.get('/', (req, res) => {
-    res.sendFile(dirName + '/public/index/index.html');
-});
-
-//Serve pages
-app.get('/01', (req, res) => {
-    res.sendFile(dirName + '/public/pages/01.html');
-});
-
-app.get('/02', (req, res) => {
-    res.sendFile(dirName + '/public/pages/02.html');
-});
-
-app.get('/03', (req, res) => {
-    res.sendFile(dirName + '/public/pages/03.html')
-});
-
-app.get('/04', (req, res) => {
-    res.sendFile(dirName + '/public/pages/04.html')
-});
-
-app.get('/05', (req, res) => {
-    res.sendFile(dirName + '/public/pages/05.html')
-});
-
-app.listen(port, (error) => {
+const server =app.listen(port, (error) => {
     if (error) {
         console.log("Error starting the server", error);
         return;
     }
-    console.log('Server is running on port', port);
+    console.log('Server is running on port', server.address().port);
 });
+
+import path from 'path';
+
+import { indexPage, aboutPage, selectPage} from './public/pages/pages.js';
+
+console.log(path.resolve());
+
+//Serve index
+app.get('/', (req, res) => {
+    res.send(indexPage);
+});
+
+//Serve about
+app.get('/about', (req, res) => {
+    res.send(aboutPage);
+});
+
+//Serve pages
+app.get('/pages/:pageId', (req, res) => {
+    res.send(selectPage(req.params.pageId, {
+        tabTitle: `Page ${req.params.pageId}`
+    }));
+});
+
+//------API--------//

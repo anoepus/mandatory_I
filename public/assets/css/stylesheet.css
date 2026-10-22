@@ -1,0 +1,74 @@
+body {
+  background-color: #000000;
+  
+}
+
+h1 {
+  color: #FFFF11;
+  text-align: left;
+}
+
+a {
+    color: #FFFF11;
+}
+
+p {
+  font-family: verdana;
+  font-size: 20px;
+}
+
+ /* NAV */
+#nav-options {
+    color: white;
+    text-align: right
+}
+/* CODE SNIPPET */
+code {
+    font-family: Consolas,"courier new";
+    color: crimson;
+    background-color: #f1f1f1;
+    padding: 2px;
+    font-size: 105%;
+}
+
+/* LINK TREE */
+.link-tree ul {
+  font-family: courier;
+  margin: 0;
+  padding-left: 3rem;
+  list-style: none;
+  line-height: 1.25;
+  position: relative;
+  overflow: hidden;
+}
+
+.link-tree li:not(:last-child) > ul::before {
+  content: '\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020\2502\0020';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1em;
+  color: #FFFF11;
+}
+
+.link-tree > ul {
+  margin: 0;
+  padding: 0;
+}
+
+.link-tree li {
+  background: #000000;
+  position: relative;
+}
+
+.link-tree li::before {
+  content: '\251C\2500\2500\0020';
+  color: #FFFF11;
+}
+
+.link-tree li:last-child::before {
+  content: '\2514\2500\2500\0020';
+  color: #FFFF11;
+}
+
