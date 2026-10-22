@@ -1,6 +1,12 @@
 body {
   background-color: #000000;
-  
+  min-height: 95vh;
+  flex-direction: column;
+  display: flex;
+}
+
+main {
+    flex: 1;
 }
 
 h1 {
@@ -15,6 +21,7 @@ a {
 p {
   font-family: verdana;
   font-size: 20px;
+  color: #FFFF11;
 }
 
  /* NAV */
@@ -25,8 +32,8 @@ p {
 /* CODE SNIPPET */
 code {
     font-family: Consolas,"courier new";
-    color: crimson;
-    background-color: #f1f1f1;
+    color: #FFFF11;
+    
     padding: 2px;
     font-size: 105%;
 }
