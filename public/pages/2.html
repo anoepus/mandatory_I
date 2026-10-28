@@ -1,3 +1,303 @@
 <main>
-<h1>02. First Server 4/9</h1>
+  <h1>02. First Server 4/9</h1>
+
+  <p><strong>Strict</strong></p>
+  <p><code>use strict</code> en stricter version af js.</p>
+  <p>ES Modules bruger strict by default.</p>
+  <br />
+
+  <p><strong>Scope</strong></p>
+  <p>
+    Der hvor et variabel er synligt<br />
+    Scope defineres af hvor variablen ligger
+  </p>
+  <ul>
+    <li>
+      <p>var: function scope</p>
+    </li>
+    <li>
+      <p>Variablen lever i hele funktionen. Kan kaldes når som helst</p>
+    </li>
+    <li>
+      <p>leaker ud af block scopes. ({})</p>
+    </li>
+    <li>
+      <p>let, const: block scope</p>
+    </li>
+    <li>
+      <p>variablen lever kun i block scope.</p>
+    </li>
+    <li>
+      <p>
+        mest brugt, da den ikke leaker ud (eller ind (shadowing)) af block
+        scopes. ({})
+      </p>
+    </li>
+  </ul>
+  <br>
+
+  <p><strong>Hoisting</strong></p>
+  <p>
+    TDZ: Temporal Dead Zone mellem det hoistede variabel og til den
+    initializeres.
+  </p>
+  <ul>
+    <li>
+      <p>var: hoisted til toppen af funktion</p>
+    </li>
+    <li>
+      <p>
+        variablen bliver initializeret, men retuneres med undefined inden den
+        bliver defineret.
+      </p>
+    </li>
+    <li>
+      <p>let, const: hoisted til toppen af block scope</p>
+    </li>
+    <li>
+      <p>
+        variablerne er ikke initzializeret og kan ikke bruges før let fo = bar
+        (TDZ).
+      </p>
+    </li>
+    <li>
+      <p>bruges den før kaster den refrenceError.</p>
+    </li>
+  </ul>
+  <p>brug altid const. Ellers brug let hvis værdien skal ændres under vej.</p>
+  <br>
+
+  <p><strong>Funktioner</strong></p>
+  <ul>
+    <li>
+      <p><em>deklaration</em>:</p>
+    </li>
+    <li>
+      <p><code>function add(a, b) { return a + b };</code></p>
+    </li>
+    <li>
+      <p>funktionen er deklereret. Har et navn og bliver hoisted.</p>
+    </li>
+    <li>
+      <p><em>expression</em>:</p>
+    </li>
+    <li>
+      <p>
+        anonym funktion:
+        <code>const add = function (a, b) {return a + b };</code>
+      </p>
+    </li>
+    <li>
+      <p>
+        navngivet funktion:
+        <code>const add = function plus(a, b) { return a + b };</code>
+      </p>
+    </li>
+    <li>
+      <p><em>arrow</em>:</p>
+    </li>
+    <li>
+      <p><code>const add = (a, b) =&gt; a + b;</code></p>
+    </li>
+    <li>
+      <p><em>first-class citizen</em>:</p>
+    </li>
+    <li>
+      <p>
+        Funktioner er værdier. Kan tildeles til variabler, gives som argument og
+        retuneres.
+      </p>
+    </li>
+    <li>
+      <p><em>implicit return</em></p>
+    </li>
+    <li>
+      <p>
+        arrow funktion uden block scope ({}) retunere hvad end der er på den
+        anden side af =&gt;
+      </p>
+    </li>
+    <li>
+      <p>arrow funktion med block scope skal retuneres med return.</p>
+    </li>
+  </ul>
+  <br>
+
+  <p><strong>Callback function</strong></p>
+  <p>
+    Node er single thread. Callbacks tillader at en funktion kan blive kaldt
+    senere uden at blokere tråden.
+  </p>
+  <p><em>Navngivet function</em></p>
+  <p>
+    <code
+      >function playingGuitarAction(name) { return name + " likes to play
+      guitar"; };</code
+    >
+  </p>
+  <p><code>genericActionPerformer("Elias", playingGuitarAction);</code></p>
+  <p><em>Arrow med block body</em></p>
+  <p>
+    <code
+      >genericActionPerformer("Magnus", (name) =&gt; { return name + " likes to
+      watch movies"; });</code
+    >
+  </p>
+  <p><em>One-liner arrow (implicit return)</em></p>
+  <p>
+    <code
+      >genericActionPerformer("Jacob", (name) =&gt; name + " likes to
+      sail");</code
+    >
+  </p>
+  <p>i express er <em>Route handler</em> en callback funktion.</p>
+  <p><code>app.get("/", (req, res) =&gt; { ... })</code></p>
+  <br>
+
+  <p><strong>Build tool/package manager</strong></p>
+  <p><em>Package manager</em> downloader dependencies og køre scripts.</p>
+  <p>npm = node package manager</p>
+  <p>
+    <code>npm init</code> instansiere node project og opretter node manifest =
+    <code>package.json</code>
+  </p>
+  <p>
+    <code>npm install</code> installere alle dependencies i
+    <code>package.json</code>
+  </p>
+  <p><em>Semver</em> tagger versionsnummer af dependency</p>
+  <ul>
+    <li>
+      <p>(<code>^5.2.1</code>)</p>
+    </li>
+    <li>
+      <p>MAJOR, MINOR, PATCH</p>
+    </li>
+    <li>
+      <p>
+        <code>^</code> tillader minor og patch updates når
+        <code>npm update</code>
+      </p>
+    </li>
+  </ul>
+  <p>
+    <em>package-lock.json</em> pinner dependencies versioner, så alle installere
+    samme dependencies
+  </p>
+  <p>
+    <code>npm install express</code> tilføjer express til dependencies og
+    installere express i <code>node_modules</code>.
+  </p>
+  <p>
+    <em>node_modules</em> er mappen hvor dine dependencies og de dependencies
+    der afhænger af dine dependencies bliver installeret (transitive
+    dependencies).
+  </p>
+  <p>aldrig commit <code>node_modules</code> (.gitignore)</p>
+  <br>
+
+  <p><em>Build tool</em> håndtere life cycles (compile, test, package)</p>
+  <br>
+
+  <p><strong>Client-Server model</strong></p>
+  <p><em>Client</em> requester resourcer</p>
+  <p><em>Server</em> lytter, bearbejder requests og svare</p>
+  <p>request -&gt; response over HTTP (stateless)</p>
+  <p><em>Request</em> har method, URL, headers, og valgfrit en body</p>
+  <p><em>Response</em> gar status kode, headers, body.</p>
+  <p><em>Port</em> der hvor serveren lever</p>
+  <p><em>Localhost</em> lokale ip adresse på computer <code>127.0.0.1</code></p>
+  <p><em>HTTP Status koder</em></p>
+  <ul>
+    <li>
+      <p>1xx = info</p>
+    </li>
+    <li>
+      <p>2xx = success</p>
+    </li>
+    <li>
+      <p><code>200</code> ok</p>
+    </li>
+    <li>
+      <p><code>201</code> created</p>
+    </li>
+    <li>
+      <p><code>204</code> no content</p>
+    </li>
+    <li>
+      <p>3xx = redirection</p>
+    </li>
+    <li>
+      <p><code>301</code> nyt domæne</p>
+    </li>
+    <li>
+      <p><code>302</code> videre på samme domæne</p>
+    </li>
+    <li>
+      <p>4xx = client side error</p>
+    </li>
+    <li>
+      <p><code>400</code> bad request</p>
+    </li>
+    <li>
+      <p><code>404</code> not found</p>
+    </li>
+    <li>
+      <p>5xx = server side error</p>
+    </li>
+    <li>
+      <p><code>500</code> internal server error</p>
+    </li>
+  </ul>
+  <br>
+
+  <p><strong>Express</strong></p>
+  <p>Minimal web framework for Node.js (routing + middleware)</p>
+  <p>importere</p>
+  <p><code>const express = require ("express");</code></p>
+  <p>impotere express fra node_modules</p>
+  <p>instansiere</p>
+  <p><code>const app = express();</code></p>
+  <p>route = HTTP methode + endpoint + callback</p>
+  <p>
+    <code>app.get("/", (req, res) =&gt; { res.send({ data: "hej" }) });</code>
+  </p>
+  <p>lytter på port (8080)</p>
+  <p>
+    <code
+      >app.listen(8080, () =&gt; console.log("Server is running on port",
+      8080));</code
+    >
+  </p>
+  <br>
+  
+  <p><strong>Middleware</strong></p>
+  <p>Funktion der køre mellem request and response.</p>
+  <p>fx: <code>express.json()</code> parser JSON body til req.body.</p>
+  <p><strong>Path/Query parameter</strong></p>
+  <p>GET har ingen body, men kan request data igennem URL</p>
+  <ul>
+    <li>
+      <p>Path parameter</p>
+    </li>
+    <li>
+      <p><code>/beers/lager/6</code></p>
+    </li>
+    <li>
+      <p><code>/beers/:beerType/:amount</code></p>
+    </li>
+    <li>
+      <p>sender beerType og amount videre i GET Methoden</p>
+    </li>
+    <li>
+      <p>Query parameter</p>
+    </li>
+    <li>
+      <p><code>/bars/forgottenItems?userId=1&amp;employee=true</code></p>
+    </li>
+    <li>
+      <p>sender userId og employee videre i GET methoden</p>
+    </li>
+  </ul>
+  <p>alt i URL er en string. Konvertere tal med <code>Number()</code></p>
 </main>

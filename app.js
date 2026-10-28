@@ -20,6 +20,8 @@ import { indexPage, aboutPage, selectPage} from './public/pages/pages.js';
 
 console.log(path.resolve());
 
+//opdater node.js
+
 //Serve index
 app.get('/', (req, res) => {
     res.send(indexPage);
